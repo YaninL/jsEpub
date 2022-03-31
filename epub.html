@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="description" content="" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./asset/cat--v4.png" />
+    <link rel="stylesheet" href="./vender/semantic/semantic.min.css" />
+    <link rel="stylesheet" href="./vender/jquery.datatables/jquery.datatables.min.css" />
+    <link rel="stylesheet" href="./asset/style.css" />
+    <title>Ebook editor</title>
+  </head>
+  <body class="overlay ui dim">
+    <div class="pusher">
+      <div class="page-header">
+        <div class="ui title container">
+          <h1 title="Pure javascript ebook editor">Ebook editor</h1>
+        </div>
+        <div class="ui one column grid page-header-menu">
+          <div class="ui attached secondary inverted menu column">
+            <div class="ui container">
+              <a class="item" id="newbook"><i class="book icon"></i>New</a>
+              <a class="item" id="openfile"><i class="book icon"></i>Open</a>
+              <a class="item" id="savefile"><i class="save icon"></i>Save</a>
+              <div class="item active" id="status"></div>
+              <div class="right menu">
+                <a class="item" id="addfile"><i class="file alternate icon"></i>Add Files</a>
+                <a class="item" id="addcover"><i class="image outline icon"></i>Add Cover</a>
+                <div class="ui dropdown item" id="tools"> Tools <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <a class="item" id="reloadlist">Reload list</a>
+                    <a class="item" id="restructure">Restructure</a>
+                    <a class="item" id="chapterToFilename">Chapter to filename</a>
+                    <a class="item">Replace</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="shadow"></div>
+      </div>
+      <div class="ui container">
+        <div class="status"></div>
+        <div class="ui relaxed divided items">
+          <div class="item">
+            <div id="cover" class="ui small image" style="border-radius: 0.3rem;" data-content="คลิกเพื่อเปลี่ยนปกหนังสือ">
+              <img src="./asset/cover.jpg" />
+            </div>
+            <div class="content">
+              <div class="header"><i class="book icon"></i>ข้อมูลหนังสือ</div>
+              <table class="ui striped table" style="border: 0px;">
+                <tr>
+                  <td class="two wide column"><b>ชื่อไฟล์</b></td>
+                  <td id="filename" contenteditable="true">-</td>
+                </tr>
+                <tr>
+                  <td class=""><b>ชื่อเรื่อง</b></td>
+                  <td id="title" contenteditable="true">-</td>
+                </tr>
+                <tr>
+                  <td class=""><b>ผู้แต่ง</b></td>
+                  <td id="creator" contenteditable="true">-</td>
+                </tr>
+                <tr>
+                  <td class=""><b>สำนักพิมพ์</b></td>
+                  <td id="publisher" contenteditable="true">-</td>
+                </tr>
+                <tr>
+                  <td class=""><b>คำอธิบาย</b></td>
+                  <td id="description" contenteditable="true">-</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!--table id="sectionlist" class="ui striped blue table"></table-->
+        <table class="ui striped blue table">
+          <thead>
+            <tr>
+              <th class="one wide column">ลำดับ</th>
+              <th class="four wide column">ชื่อไฟล์</th>
+              <th>ชื่อตอน</th>
+              <th class="two wide column right aligned"><i class="cubes icon"></i></th>
+            </tr>
+          </thead>
+          <tbody id="sectionlist"></tbody>
+        </table>
+        <div class="footer">
+          <div class="ui divider"></div>
+          <p><i>© 2021-2022 Ann and contributors.<span class="info"></span></i></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pusher overlay ui dimmer">
+      <div class="ui container" style="background-color: white; border-radius: 0.3rem;">
+        <div class="ui one column segment">
+          <div class="ui center aligned header" id="editertitle"></div>
+          <div class="ui"><textarea id="editercontent"></textarea></div>
+          <div class="ui">
+            <button class="ui primary button" id="editersave">บันทึก</button>
+            <button class="ui button" id="editercancle">ยกเลิก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- อิลิเมนต์ที่ซ่อนไว้ใช้งาน -->
+    <input type="file" id="epubfile" class="hidden" />
+    <input type="file" id="coverfile" class="hidden" />
+    <input type="file" id="mediafile" class="hidden" multiple />
+    <div id="identifier" class="hidden"></div>
+    <script src="./vender/fxparser/fxparser.min.js"></script>
+    <script src="./vender/jszip/jszip.min.js"></script>
+    <script src="./vender/jquery/jquery.min.js"></script>
+    <script src="./vender/jquery.datatables/jquery.datatables.min.js"></script>
+    <script src="./vender/filesaver/filesaver.min.js"></script>
+    <script src="./vender/semantic/semantic.min.js"></script> 
+    <script src="./vender/filenamify/filenamify.min.js"></script> 
+    <script src="./src/setting.js"></script>
+    <script src="./src/helper.js"></script>
+    <script src="./src/document.js"></script>    
+    <script src="./src/ebook.js"></script>
+  </body>
+</html>
